@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Offices — CBSUA Supply IMS</title>
+  <script type="module" src="../Javascript/records.js"></script>
+  <script type="module" src="../Javascript/accounts.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="../Javascript/react-loader.js"></script>
+  <script type="module" src="../Javascript/script.js"></script>
+  <link rel="stylesheet" href="../CSS/style.css" />
+  <script type="module" src="../Javascript/form-validation.js"></script>
+</head>
+<body class="font-sans bg-gray-50 min-h-screen">
+  <div class="flex">
+    <aside class="w-64 h-screen bg-cbsua-dark text-white p-4 fixed left-0 top-0 z-40 flex flex-col overflow-hidden transition-transform lg:translate-x-0 -translate-x-full" id="sidebar">
+      <div class="mb-3 shrink-0">
+        <div class="flex items-center gap-2 mb-4">
+          <img src="../Image/logo.png" alt="CBSUA" class="w-9 h-auto" />
+          <div>
+            <h6 class="font-semibold">CBSUA</h6>
+            <p class="text-white/50 text-xs">Sipocot Campus</p>
+          </div>
+        </div>
+        <p class="uppercase text-xs text-white/50 mb-2">Supply Office</p>
+        <p class="text-white/70 text-sm mb-6">Inventory management system</p>
+      </div>
+
+      <nav class="flex-1 min-h-0 overflow-hidden">
+        <p class="uppercase text-xs text-white/40 mb-2">Workspace</p>
+        <a href="dashboard.html" class="sidebar-link">
+          <svg viewBox="0 0 24 24" class="h-4 w-4 fill-none stroke-current stroke-[1.8]" aria-hidden="true"><path d="M4 18V9m6 9V5m6 13V12m4 6H4" stroke-linecap="round" stroke-linejoin="round"/></svg> Dashboard
+        </a>
+        <a href="inventory.html" class="sidebar-link">
+          <svg viewBox="0 0 24 24" class="h-4 w-4 fill-none stroke-current stroke-[1.8]" aria-hidden="true"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5v-9Zm9 13.5v-9m9-4.5-9 4.5-9-4.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Inventory
+        </a>
+        <a href="stock_request.html" class="sidebar-link">
+          <svg viewBox="0 0 24 24" class="h-4 w-4 fill-none stroke-current stroke-[1.8]" aria-hidden="true"><path d="M9 4.5h6M8 3.5h8a1 1 0 0 1 1 1v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-12a1 1 0 0 1 1-1h2Zm-1 7h8M7 11h8M7 15h6" stroke-linecap="round" stroke-linejoin="round"/></svg> Stock Requests
+          <span class="ml-auto bg-white/20 text-xs px-2 py-0.5 rounded-full">3</span>
+        </a>
+        <a href="issue_supply.html" class="sidebar-link">
+          <svg viewBox="0 0 24 24" class="h-4 w-4 fill-none stroke-current stroke-[1.8]" aria-hidden="true"><path d="M9 12.5l2 2 4-5m-7.5 9.5h9a2 2 0 0 0 2-2V7.5a2 2 0 0 0-2-2h-9a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2Z" stroke-linecap="round" stroke-linejoin="round"/></svg> Issue Supplies
+        </a>
+        <a href="receive_stock.html" class="sidebar-link">
+          <svg viewBox="0 0 24 24" class="h-4 w-4 fill-none stroke-current stroke-[1.8]" aria-hidden="true"><path d="M12 4v8m0 0 3.5-3.5M12 12l-3.5-3.5M5 17.5h14" stroke-linecap="round" stroke-linejoin="round"/></svg> Receive Stock
+        </a>
+        <a href="suppliers.html" class="sidebar-link">
+          <svg viewBox="0 0 24 24" class="h-4 w-4 fill-none stroke-current stroke-[1.8]" aria-hidden="true"><path d="M4 20V7.5L12 4l8 3.5V20M8 20v-6h8v6M10 10h.01M14 10h.01M10 13h.01M14 13h.01" stroke-linecap="round" stroke-linejoin="round"/></svg> Suppliers
+        </a>
+        <a href="offices.html" class="sidebar-link active" aria-current="page">
+          <svg viewBox="0 0 24 24" class="h-4 w-4 fill-none stroke-current stroke-[1.8]" aria-hidden="true"><path d="M3.5 21V5.5l7-2.5V21m0-12h10v12M6.5 8.5h.01M6.5 12h.01M6.5 15.5h.01M14 12h2.5M14 15.5h2.5M14 19h2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Offices
+        </a>
+      </nav>
+      <div class="mt-auto shrink-0 pt-3 border-t border-white/10">
+        <button type="button" class="sidebar-link" data-open-settings><svg viewBox="0 0 24 24" class="h-4 w-4" aria-hidden="true"><path d="M12 3.5v2.2m0 14.6v2.2m8.5-8.5h-2.2M5.7 12H3.5m14.9-6.4-1.5 1.5M8.1 15.9l-1.5 1.5m0-11.8 1.5 1.5m7.8 7.8 1.5 1.5M12 8.5A3.5 3.5 0 1 1 12 15.5A3.5 3.5 0 0 1 12 8.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Settings</button>
+        <button type="button" class="sidebar-link" data-open-help><svg viewBox="0 0 24 24" class="h-4 w-4" aria-hidden="true"><path d="M9.75 9.25A2.5 2.5 0 0 1 12 7a2.5 2.5 0 0 1 2.5 2.5c0 1.7-1.5 2.2-2.1 3.1-.2.3-.4.6-.4 1.4M12 17.5h.01M12 3.5a8.5 8.5 0 1 0 0 17a8.5 8.5 0 0 0 0-17Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Help?</button>
+        <a href="index.html" class="sidebar-link" data-sign-out>
+          <svg viewBox="0 0 24 24" class="h-4 w-4 fill-none stroke-current stroke-[1.8]" aria-hidden="true"><path d="M15 7.5V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-2.5M14 12h6m0 0-2.5-2.5M20 12l-2.5 2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Sign out
+        </a>
+      </div>
+    </aside>
+
+    <main class="flex-1 min-w-0 ml-0 lg:ml-64 p-6 pt-16 lg:pt-6">
+      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
+        <div>
+          <h4 class="text-cbsua-muted text-sm">Supply Office / Offices</h4>
+          <h2 class="text-2xl font-bold mt-1">Campus offices</h2>
+          <p class="text-cbsua-muted text-sm">Find an office, review its supply activity, and create a request.</p>
+        </div>
+        <button type="button" id="newOfficeRequest" class="self-start sm:self-auto px-4 py-2 bg-cbsua-primary text-white rounded-lg text-sm font-medium hover:bg-green-700">
+          + New stock request
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        <div class="stat-card">
+          <p class="text-cbsua-muted text-sm">Registered offices</p>
+          <p class="text-3xl font-bold mt-1" id="officeCount">42</p>
+        </div>
+        <div class="stat-card">
+          <p class="text-cbsua-muted text-sm">Pending requests</p>
+          <p class="text-3xl font-bold mt-1">3</p>
+        </div>
+        <div class="stat-card">
+          <p class="text-cbsua-muted text-sm">Issued this month</p>
+          <p class="text-3xl font-bold mt-1">128</p>
+        </div>
+      </div>
+
+      <div class="stat-card mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-3">
+          <div class="relative">
+            <svg viewBox="0 0 24 24" class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 fill-none stroke-cbsua-muted stroke-[1.8]" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4" stroke-linecap="round"/></svg>
+            <input id="officeSearch" type="search" placeholder="Search offices..." class="w-full pl-10 pr-4 py-2.5 border border-cbsua-border rounded-lg focus:outline-none focus:ring-2 focus:ring-cbsua-primary/25" />
+          </div>
+          <select id="officeFilter" class="px-4 py-2.5 border border-cbsua-border rounded-lg">
+            <option value="all">All offices</option>
+            <option value="administrative">Administrative</option>
+            <option value="academic">Academic</option>
+            <option value="support">Support services</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-sm text-cbsua-muted" id="officeResults">Showing 42 offices</p>
+        <button type="button" id="clearFilters" class="text-sm text-cbsua-primary font-medium hover:underline hidden">Clear filters</button>
+      </div>
+      <div id="officeGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+    </main>
+  </div>
+
+  <div id="officeActivityModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4" role="dialog" aria-modal="true" aria-labelledby="officeActivityTitle">
+    <div class="w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-xl bg-white p-6 shadow-xl">
+      <div class="mb-5 flex items-center justify-between gap-4">
+        <h3 id="officeActivityTitle" class="text-xl font-bold">Office recent activity</h3>
+        <button type="button" data-close-office-activity class="text-cbsua-muted hover:text-black" aria-label="Close office activity">✕</button>
+      </div>
+      <div id="officeActivityContent" class="text-sm"></div>
+    </div>
+  </div>
+
+  <div id="officeQuotaModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4" role="dialog" aria-modal="true" aria-labelledby="officeQuotaTitle">
+    <div class="w-full max-w-xl rounded-xl bg-white p-6 shadow-xl">
+      <div class="mb-5 flex items-start justify-between gap-4">
+        <div>
+          <h3 id="officeQuotaTitle" class="text-xl font-bold">Manage office item allocation</h3>
+          <p id="officeQuotaOffice" class="mt-1 text-sm text-cbsua-muted"></p>
+        </div>
+        <button type="button" data-close-office-quota class="text-cbsua-muted hover:text-black" aria-label="Close allocation settings">✕</button>
+      </div>
+      <form id="officeQuotaForm" class="space-y-4">
+        <input id="officeQuotaOfficeId" type="hidden" />
+        <div>
+          <label for="officeQuotaItem" class="mb-2 block font-medium">Inventory item</label>
+          <select id="officeQuotaItem" class="w-full rounded-lg border border-cbsua-border px-4 py-2.5" required></select>
+        </div>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
+            <label for="officeQuotaCampusBudget" class="mb-2 block font-medium">Campus annual budget</label>
+            <input id="officeQuotaCampusBudget" type="number" min="0" step="1" class="w-full rounded-lg border border-cbsua-border px-4 py-2.5" required />
+            <p class="mt-1 text-xs text-cbsua-muted">Total units available to allocate across all offices this year.</p>
+          </div>
+          <div>
+            <label for="officeQuotaAnnualLimit" class="mb-2 block font-medium">This office's annual allocation</label>
+            <input id="officeQuotaAnnualLimit" type="number" min="0" step="1" class="w-full rounded-lg border border-cbsua-border px-4 py-2.5" required />
+            <p class="mt-1 text-xs text-cbsua-muted">Split as evenly as possible across four quarters.</p>
+          </div>
+        </div>
+        <p id="officeQuotaSummary" class="rounded-lg bg-gray-50 p-3 text-sm text-cbsua-muted" aria-live="polite"></p>
+        <div class="flex justify-end gap-3">
+          <button type="button" data-close-office-quota class="rounded-lg border border-cbsua-border px-4 py-2 font-medium hover:bg-gray-50">Cancel</button>
+          <button type="submit" class="rounded-lg bg-cbsua-primary px-4 py-2 font-medium text-white hover:bg-green-700">Save allocation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const offices = [
+      ["Accounting Office", "administrative"],
+      ["Admission Office", "administrative"],
+      ["Alumni Office", "administrative"],
+      ["Auxiliary Office", "administrative"],
+      ["Budget Office", "administrative"],
+      ["Bids and Awards Committee Office", "administrative"],
+      ["Business Affairs Unit", "administrative"],
+      ["Campus PIO", "administrative"],
+      ["Cashier's Office", "administrative"],
+      ["College of Engineering", "academic"],
+      ["College of Information Technology", "academic"],
+      ["Clinic / Infirmary", "support"],
+      ["College of Criminology", "academic"],
+      ["College of Education", "academic"],
+      ["Commission on Audit", "administrative"],
+      ["College of Industrial Technology", "academic"],
+      ["Curriculum and Instruction Division", "academic"],
+      ["Disaster Risk Readiness Management Office", "support"],
+      ["Environmental Science and Agroforestry Program", "academic"],
+      ["Extension Services Unit", "academic"],
+      ["Gender and Development Office", "support"],
+      ["General Administration and Support Services", "administrative"],
+      ["Guidance and Counseling Unit", "support"],
+      ["Human Resource Management Office", "administrative"],
+      ["Informations and Communications Technology Office", "support"],
+      ["Industry Linkages and Development Office", "administrative"],
+      ["Institutional Planning and Development Office", "administrative"],
+      ["Library", "academic"],
+      ["Motorpool", "support"],
+      ["Office of Campus Administrator", "administrative"],
+      ["Office of the Student Affairs and Services", "administrative"],
+      ["Physical Plant and Development Office", "support"],
+      ["Publication Office", "support"],
+      ["Quality Assurance Office", "administrative"],
+      ["Reading Center", "academic"],
+      ["Record's Office", "administrative"],
+      ["Registrar's Office", "administrative"],
+      ["Research and Development Center", "academic"],
+      ["ROTC / NSTP Office", "academic"],
+      ["Sentro ng Wika, Kultura at Sining", "academic"],
+      ["Supply Office", "administrative"],
+      ["UMIS", "support"]
+    ].map((office, index) => [
+        office[0],
+        office[1],
+        `OFF-${String(index + 1).padStart(3, "0")}`
+      ]);
+
+    const grid = document.getElementById("officeGrid");
+    const search = document.getElementById("officeSearch");
+    const filter = document.getElementById("officeFilter");
+    const results = document.getElementById("officeResults");
+    const clear = document.getElementById("clearFilters");
+    const activityModal = document.getElementById("officeActivityModal");
+    const activityTitle = document.getElementById("officeActivityTitle");
+    const activityContent = document.getElementById("officeActivityContent");
+    const quotaModal = document.getElementById("officeQuotaModal");
+    const quotaForm = document.getElementById("officeQuotaForm");
+    const quotaSummary = document.getElementById("officeQuotaSummary");
+    const quotaItemSelect = document.getElementById("officeQuotaItem");
+    const quotaBudgetInput = document.getElementById("officeQuotaCampusBudget");
+    const quotaOfficeLimitInput = document.getElementById("officeQuotaAnnualLimit");
+    const officeAliases = {
+      "Registrar's Office": ["Registrar"],
+      "Clinic / Infirmary": ["Campus Health Services", "Clinic"]
+    };
+    let recordsPromise;
+    let activityOpener;
+
+    function createActivityElement(tag, className = "", text = "") {
+      const element = document.createElement(tag);
+      element.className = className;
+      element.textContent = text;
+      return element;
+    }
+
+    function renderOfficeQuotaSummaries() {
+      const currentYear = new Date().getFullYear();
+      const currentQuarter = Math.floor(new Date().getMonth() / 3) + 1;
+      const quotas = window.IMS?.getLocalRecords("officeQuotas") || [];
+      grid.querySelectorAll("[data-office-quota-summary]").forEach(container => {
+        const officeCard = container.closest("[data-office-code]");
+        const officeId = officeCard?.dataset.officeCode;
+        const officeQuotas = quotas.filter(quota => quota.officeId === officeId
+          && Number(quota.year) === currentYear);
+        container.replaceChildren();
+        if (!officeQuotas.length) {
+          container.append(createActivityElement("p", "text-xs text-cbsua-muted",
+            "No item allocations assigned for this year."));
+          return;
+        }
+        officeQuotas.slice(0, 3).forEach(quota => {
+          const itemLine = createActivityElement("div", "flex flex-wrap justify-between gap-x-3 gap-y-1 text-xs");
+          itemLine.append(
+            createActivityElement("span", "font-medium", quota.itemName),
+            createActivityElement("span", "text-cbsua-muted",
+              `Q${currentQuarter}: ${quota.currentQuarterUsed}/${quota.currentQuarterLimit} ${quota.unit} · Annual ${quota.annualUsed}/${quota.annualLimit} ${quota.unit}`)
+          );
+          container.append(itemLine);
+        });
+        if (officeQuotas.length > 3) {
+          container.append(createActivityElement("p", "text-xs text-cbsua-muted",
+            `+ ${officeQuotas.length - 3} more item allocation${officeQuotas.length - 3 === 1 ? "" : "s"}`));
+        }
+      });
+    }
+
+    function closeOfficeActivity() {
+      activityModal.classList.add("hidden");
+      activityModal.classList.remove("flex");
+      activityOpener?.focus();
+    }
+
+    async function showOfficeActivity(office, opener) {
+      activityOpener = opener;
+      activityTitle.textContent = `${office} — Recent activity`;
+      activityContent.replaceChildren(createActivityElement("p", "text-cbsua-muted", "Loading office activity…"));
+      activityModal.classList.remove("hidden");
+      activityModal.classList.add("flex");
+      activityModal.querySelector("[data-close-office-activity]").focus();
+
+      try {
+        if (!recordsPromise) recordsPromise = window.IMS.initializeRecords();
+        await recordsPromise;
+
+        const items = window.IMS.getLocalRecords("items");
+        const requests = window.IMS.getLocalRecords("requests")
+          .filter(request => request.office === office || officeAliases[office]?.includes(request.office))
+          .map(request => ({
+            id: request.id,
+            date: request.date || request.createdAt,
+            type: "Requested",
+            item: items.find(item => item.id === request.itemId),
+            itemFallback: request.item || request.itemId,
+            quantity: request.quantity,
+            status: request.status || "Pending",
+            recipient: request.recipient
+          }));
+        const issuances = window.IMS.getLocalRecords("issuances")
+          .filter(issuance => issuance.office === office || officeAliases[office]?.includes(issuance.office))
+          .map(issuance => ({
+            id: issuance.id,
+            date: issuance.date || issuance.createdAt,
+            type: "Issued",
+            item: items.find(item => item.id === issuance.itemId),
+            itemFallback: issuance.itemName || issuance.itemId,
+            quantity: [issuance.quantity, issuance.unit].filter(Boolean).join(" "),
+            status: "Issued",
+            recipient: issuance.recipient
+          }));
+        const activity = [...requests, ...issuances]
+          .sort((left, right) => (Date.parse(right.date) || 0) - (Date.parse(left.date) || 0));
+
+        activityContent.replaceChildren();
+        if (!activity.length) {
+          activityContent.append(createActivityElement("p", "py-6 text-center text-cbsua-muted",
+            "No requests or stock transactions are recorded for this office yet."));
+          return;
+        }
+
+        const tableWrapper = createActivityElement("div", "overflow-x-auto");
+        const table = createActivityElement("table", "w-full min-w-[700px] text-left");
+        const header = document.createElement("thead");
+        const headerRow = createActivityElement("tr", "border-b border-cbsua-border text-cbsua-muted");
+        ["Date", "Activity", "Requested stock", "Quantity", "Status", "Employee"].forEach(label => {
+          headerRow.append(createActivityElement("th", "px-3 py-2 font-medium", label));
+        });
+        header.append(headerRow);
+        const body = document.createElement("tbody");
+        activity.slice(0, 10).forEach(entry => {
+          const row = createActivityElement("tr", "border-b border-cbsua-border/50");
+          const date = entry.date && !Number.isNaN(Date.parse(entry.date))
+            ? new Date(entry.date).toLocaleDateString()
+            : "—";
+          const stock = entry.item
+            ? `${entry.item.id} — ${entry.item.name}`
+            : entry.itemFallback || "—";
+          [date, `${entry.type} · ${entry.id}`, stock, entry.quantity || "—", entry.status, entry.recipient || "—"]
+            .forEach(value => row.append(createActivityElement("td", "px-3 py-3 align-top", value)));
+          body.append(row);
+        });
+        table.append(header, body);
+        tableWrapper.append(table);
+        activityContent.append(
+          createActivityElement("p", "mb-3 text-cbsua-muted", `Showing the ${Math.min(activity.length, 10)} most recent request and issuance records.`),
+          tableWrapper
+        );
+      } catch (error) {
+        console.error("Office activity could not be loaded.", error);
+        activityContent.replaceChildren(createActivityElement("p", "py-6 text-center text-red-700",
+          "Office activity could not be loaded. Please close this window and try again."));
+      }
+    }
+
+    function renderOffices() {
+      const query = search.value.trim().toLowerCase();
+      const category = filter.value;
+      const visible = offices.filter(([name, type]) =>
+        (category === "all" || type === category) &&
+        name.toLowerCase().includes(query)
+      );
+
+      grid.innerHTML = visible.map(([name, type, officeId]) => {
+        const initials = name.split(/[\s/]+/).filter(Boolean).slice(0, 2).map(word => word[0]).join("").replace(/[^A-Z]/gi, "").toUpperCase();
+        const label = type.charAt(0).toUpperCase() + type.slice(1);
+        const allocationAction = window.IMS?.currentUser?.role === "admin"
+          ? `<button type="button" class="office-quota-manage text-cbsua-primary font-medium hover:underline" data-office="${name}" data-office-id="${officeId}">Manage item allocations</button>`
+          : "";
+        return `
+          <article class="stat-card hover:border-cbsua-primary/40 transition-colors" data-office-code="${officeId}">
+            <div class="flex items-start gap-3">
+              <div class="shrink-0 w-11 h-11 rounded-lg bg-cbsua-light text-cbsua-primary flex items-center justify-center font-bold">${initials || "O"}</div>
+              <div class="min-w-0 flex-1">
+                <h3 class="font-semibold leading-snug">
+                  <button type="button" class="office-details text-left hover:text-cbsua-primary" data-office="${name}" aria-label="View recent activity for ${name}">${name}</button>
+                </h3>
+                <p class="mt-1 text-xs font-medium text-cbsua-primary">${officeId}</p>
+                <span class="inline-block mt-2 text-xs px-2 py-1 rounded-full bg-gray-100 text-cbsua-muted">${label}</span>
+              </div>
+              <span class="text-xs text-cbsua-muted whitespace-nowrap">Active</span>
+            </div>
+            <div data-office-quota-summary class="mt-4 space-y-2 border-t border-cbsua-border pt-3"></div>
+            <div class="mt-4 pt-3 border-t border-cbsua-border flex items-center justify-between gap-3 text-sm">
+              <button type="button" class="office-details text-cbsua-primary font-medium hover:underline" data-office="${name}">Recent activity →</button>
+              <button type="button" class="office-request text-cbsua-primary font-medium hover:underline" data-office="${name}">Request supply →</button>
+            </div>
+            ${allocationAction ? `<div class="mt-3 text-right text-sm">${allocationAction}</div>` : ""}
+          </article>`;
+      }).join("");
+      renderOfficeQuotaSummaries();
+
+      results.textContent = `Showing ${visible.length} ${visible.length === 1 ? "office" : "offices"}`;
+      clear.classList.toggle("hidden", !query && category === "all");
+    }
+
+    function currentOfficeQuota() {
+      const currentYear = new Date().getFullYear();
+      return (window.IMS?.getLocalRecords("officeQuotas") || []).find(quota =>
+        quota.officeId === document.getElementById("officeQuotaOfficeId").value
+        && quota.itemId === quotaItemSelect.value
+        && Number(quota.year) === currentYear);
+    }
+
+    function updateQuotaFormSummary() {
+      if (!quotaSummary) return;
+      const itemId = quotaItemSelect.value;
+      const officeId = document.getElementById("officeQuotaOfficeId").value;
+      const currentYear = new Date().getFullYear();
+      const items = window.IMS?.getLocalRecords("items") || [];
+      const budgets = window.IMS?.getLocalRecords("itemAnnualBudgets") || [];
+      const quotas = window.IMS?.getLocalRecords("officeQuotas") || [];
+      const item = items.find(entry => entry.id === itemId);
+      if (!item) {
+        quotaSummary.textContent = "Choose an item to view its allocation.";
+        return;
+      }
+      const currentBudget = budgets.find(budget => budget.itemId === itemId
+        && Number(budget.year) === currentYear);
+      const currentQuota = currentOfficeQuota();
+      const campusBudget = Number(quotaBudgetInput.value);
+      const officeLimit = Number(quotaOfficeLimitInput.value);
+      const totalAllocated = currentBudget?.allocated
+        ?? quotas.filter(quota => quota.itemId === itemId && Number(quota.year) === currentYear)
+          .reduce((total, quota) => total + Number(quota.annualLimit), 0);
+      const allocatedElsewhere = Math.max(0, totalAllocated - Number(currentQuota?.annualLimit || 0));
+      const remainingCampusBudget = Math.max(0, campusBudget - allocatedElsewhere - officeLimit);
+      const quarterLimits = [1, 2, 3, 4].map(quarter =>
+        Math.floor(officeLimit / 4) + (quarter <= officeLimit % 4 ? 1 : 0));
+      quotaSummary.textContent = `Already allocated to other offices: ${allocatedElsewhere} ${item.unit}. `
+        + `After saving, ${allocatedElsewhere + officeLimit} of ${campusBudget || 0} ${item.unit} will be assigned; `
+        + `${remainingCampusBudget} ${item.unit} will remain. Quarterly limits: `
+        + quarterLimits.map((limit, index) => `Q${index + 1} ${limit}`).join(" · ") + ".";
+    }
+
+    function openOfficeQuota(officeName, officeId) {
+      if (window.IMS?.currentUser?.role !== "admin") return;
+      const items = window.IMS.getLocalRecords("items");
+      const selectedItemId = quotaItemSelect.value;
+      quotaItemSelect.replaceChildren(...items.map(item => {
+        const option = document.createElement("option");
+        option.value = item.id;
+        option.textContent = `${item.name} (${item.id}) · ${item.unit}`;
+        return option;
+      }));
+      if (items.some(item => item.id === selectedItemId)) quotaItemSelect.value = selectedItemId;
+      document.getElementById("officeQuotaOfficeId").value = officeId;
+      document.getElementById("officeQuotaOffice").textContent = `${officeName} · ${officeId}`;
+      const budget = window.IMS.getLocalRecords("itemAnnualBudgets")
+        .find(entry => entry.itemId === quotaItemSelect.value);
+      const quota = (window.IMS.getLocalRecords("officeQuotas") || [])
+        .find(entry => entry.officeId === officeId && entry.itemId === quotaItemSelect.value);
+      quotaBudgetInput.value = budget?.annualBudget ?? quota?.campusAnnualBudget ?? "";
+      quotaOfficeLimitInput.value = quota?.annualLimit ?? "";
+      quotaModal.classList.remove("hidden");
+      quotaModal.classList.add("flex");
+      updateQuotaFormSummary();
+      quotaItemSelect.focus();
+    }
+
+    function closeOfficeQuota() {
+      quotaModal.classList.add("hidden");
+      quotaModal.classList.remove("flex");
+    }
+
+    function updateOfficeQuotaItem() {
+      const year = new Date().getFullYear();
+      const itemId = quotaItemSelect.value;
+      const officeId = document.getElementById("officeQuotaOfficeId").value;
+      const budget = (window.IMS.getLocalRecords("itemAnnualBudgets") || [])
+        .find(entry => entry.itemId === itemId && Number(entry.year) === year);
+      const quota = (window.IMS.getLocalRecords("officeQuotas") || [])
+        .find(entry => entry.officeId === officeId && entry.itemId === itemId
+          && Number(entry.year) === year);
+      quotaBudgetInput.value = budget?.annualBudget ?? quota?.campusAnnualBudget ?? "";
+      quotaOfficeLimitInput.value = quota?.annualLimit ?? "";
+      updateQuotaFormSummary();
+    }
+
+    search.addEventListener("input", renderOffices);
+    filter.addEventListener("change", renderOffices);
+    clear.addEventListener("click", () => {
+      search.value = "";
+      filter.value = "all";
+      renderOffices();
+    });
+
+    document.getElementById("newOfficeRequest").addEventListener("click", () => {
+      window.location.href = "stock_request.html?newRequest=1";
+    });
+    grid.addEventListener("click", event => {
+      const quotaButton = event.target.closest(".office-quota-manage");
+      if (quotaButton) {
+        openOfficeQuota(quotaButton.dataset.office, quotaButton.dataset.officeId);
+        return;
+      }
+      const button = event.target.closest(".office-request");
+      if (button) {
+        window.location.href = `stock_request.html?newRequest=1&office=${encodeURIComponent(button.dataset.office)}`;
+        return;
+      }
+      const detailsButton = event.target.closest(".office-details");
+      if (detailsButton) showOfficeActivity(detailsButton.dataset.office, detailsButton);
+    });
+
+    quotaItemSelect.addEventListener("change", updateOfficeQuotaItem);
+    quotaBudgetInput.addEventListener("input", updateQuotaFormSummary);
+    quotaOfficeLimitInput.addEventListener("input", updateQuotaFormSummary);
+    quotaModal.querySelectorAll("[data-close-office-quota]").forEach(button => {
+      button.addEventListener("click", closeOfficeQuota);
+    });
+    quotaForm.addEventListener("submit", async event => {
+      event.preventDefault();
+      if (window.IMS?.currentUser?.role !== "admin") return;
+      if (!quotaForm.reportValidity()) return;
+      const itemId = quotaItemSelect.value;
+      const officeId = document.getElementById("officeQuotaOfficeId").value;
+      const annualBudget = Number(quotaBudgetInput.value);
+      const officeAnnualLimit = Number(quotaOfficeLimitInput.value);
+      if (!Number.isSafeInteger(annualBudget) || annualBudget < 0
+        || !Number.isSafeInteger(officeAnnualLimit) || officeAnnualLimit < 0) {
+        return window.IMS.showToast("Enter whole-number annual budgets and allocations.");
+      }
+      const budget = (window.IMS.getLocalRecords("itemAnnualBudgets") || [])
+        .find(entry => entry.itemId === itemId && Number(entry.year) === new Date().getFullYear());
+      const quota = currentOfficeQuota();
+      const allocated = budget?.allocated
+        ?? (window.IMS.getLocalRecords("officeQuotas") || [])
+          .filter(entry => entry.itemId === itemId && Number(entry.year) === new Date().getFullYear())
+          .reduce((total, entry) => total + Number(entry.annualLimit), 0);
+      const allocatedElsewhere = Math.max(0, allocated - Number(quota?.annualLimit || 0));
+      if (allocatedElsewhere + officeAnnualLimit > annualBudget) {
+        return window.IMS.showToast(
+          `Office allocations would total ${allocatedElsewhere + officeAnnualLimit}, above the campus budget of ${annualBudget}.`
+        );
+      }
+      const submitButton = quotaForm.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      const saved = await window.IMS.setOfficeItemQuota({
+        officeId,
+        itemId,
+        year: new Date().getFullYear(),
+        annualBudget,
+        officeAnnualLimit
+      });
+      submitButton.disabled = false;
+      if (!saved) return;
+      closeOfficeQuota();
+      window.IMS.showToast("Office item allocation saved.");
+    });
+    window.addEventListener("ims:records-updated", () => {
+      renderOffices();
+      updateQuotaFormSummary();
+    });
+
+    activityModal.querySelector("[data-close-office-activity]").addEventListener("click", closeOfficeActivity);
+    activityModal.addEventListener("click", event => {
+      if (event.target === activityModal) closeOfficeActivity();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && !activityModal.classList.contains("hidden")) closeOfficeActivity();
+    });
+
+    renderOffices();
+  </script>
+</body>
+</html>
